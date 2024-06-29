@@ -5,6 +5,9 @@ const bodyParser = require('body-parser');
 const cors = require('cors');
 require('dotenv').config();
 
+// import Controllers
+const indexRoute = require('./src/Routes/index')
+
 const app = express();
 const PORT = 8080;
 
@@ -12,8 +15,10 @@ const PORT = 8080;
 app.use(bodyParser.json()); 
 app.use(cors());
 
+app.use('/api',indexRoute)
+
 app.get("/", (req, res) => {
-    res.send("Hello, World!");
+    res.send(`Server is running on port ${PORT}`);
   });      
 
 // MongoDB Connection
