@@ -3,7 +3,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cors = require('cors');
+
+
 require('dotenv').config();
+
+
 
 // import Controllers
 const indexRoute = require('./src/Routes/index')
@@ -23,7 +27,7 @@ app.get("/", (req, res) => {
 
 // MongoDB Connection
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-    .then(() => console.log('MongoDB connected'))
+    .then(() => console.log('Connected to MongoDB'))
     .catch(err => console.log(err));
 
 app.listen(PORT, () => {
