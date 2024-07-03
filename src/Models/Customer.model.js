@@ -9,8 +9,8 @@ const customerSchema = new Schema({
   city: { type: String, required: true },
   brandName: { type: String, required: true },
   modelName: { type: String, required: true },
-  carService: { type: String, required: true },
-  fullAddress: { type: String, required: true },
+  carService: { type: String },
+  fullAddress: { type: String },
   createdAt: { type: Date, default: Date.now },
   deletedAt: { type: Date, default: null }
 });
