@@ -9,11 +9,11 @@ router.post('/admin/login', AdminController.getAdmin)
 
 
 // Customers
-router.post('/customers', authenticateToken, CustomerController.createCustomer);
-router.get('/customers', authenticateToken, CustomerController.getAllCustomers);
-router.get('/customers/:id', CustomerController.getCustomerById);
-router.put('/customers', CustomerController.updateCustomerById);
-router.delete('/customers/:id', CustomerController.deleteCustomerById);
+router.post('customers', authenticateToken, CustomerController.createCustomer);
+router.get('customers', authenticateToken, CustomerController.getAllCustomers);
+router.get('customers/:id', CustomerController.getCustomerById);
+router.put('customers', CustomerController.updateCustomerById);
+router.delete('customers/:id', CustomerController.deleteCustomerById);
 
 
 module.exports = router; 
