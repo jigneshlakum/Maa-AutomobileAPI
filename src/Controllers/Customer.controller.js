@@ -6,6 +6,10 @@ const { ObjectId } = require('mongodb'); // Import ObjectId from MongoDB
 // Create a new customer
 exports.createCustomer = async (req, res) => {
   try {
+    const existingCustomer = await Customer.findOne({ $or: [{ email: req.body.email }, { mobileNumber: req.body.mobileNumber }] });
+    if (existingCustomer) {
+      return res.status(400).json({ status: false, message: 'Email or mobile number already exists' });
+    }
     const newCustomer = await Customer.create(req.body);
     res.status(201).json({ status: true, message: 'Created successfully', data: newCustomer });
   } catch (err) {
@@ -40,7 +44,7 @@ exports.getCustomerById = async (req, res) => {
 exports.updateCustomerById = async (req, res) => {
   try {
     const query = req.body.id;
-    const updatedCustomer = await Customer.findByIdAndUpdate({_id:query}, req.body, { new: true });
+    const updatedCustomer = await Customer.findByIdAndUpdate({ _id: query }, req.body, { new: true });
     if (!updatedCustomer) {
       return res.status(404).json({ status: false, message: 'Not found' });
     }
@@ -55,7 +59,7 @@ exports.deleteCustomerById = async (req, res) => {
   const query = req.params.id;
   const update = { $set: { deletedAt: new Date() } };
   try {
-    const deletedCustomer = await Customer.findByIdAndUpdate({_id:query}, update);
+    const deletedCustomer = await Customer.findByIdAndUpdate({ _id: query }, update);
     if (!deletedCustomer) {
       return res.status(404).json({ status: false, message: 'Not found' });
     }
