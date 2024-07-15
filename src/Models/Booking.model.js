@@ -1,17 +1,14 @@
 const mongoose = require('mongoose');
 
 const serviceSchema = new mongoose.Schema({
-    value: { type: Number },
-    serviceName: { type: String },
-    qty: { type: String },
-    servicePrice: { type: String },
-    total: { type: String }
+    serviceType: { type: String },
+    price: { type: Number },
 });
 
 const bookingSchema = new mongoose.Schema({
     customerId: { type: mongoose.Schema.Types.ObjectId, ref: 'Customer', required: true },
-    start_date: { type: Date },
-    end_date: { type: Date },
+    start_date: { type: String },
+    end_date: { type: String },
     advance_payment: { type: Number },
     status: { type: String },
     kilometres: { type: Number },

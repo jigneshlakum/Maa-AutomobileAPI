@@ -12,17 +12,17 @@ router.post('/admin/login', AdminController.getAdmin)
 // Customers
 router.post('/customers', authenticateToken, CustomerController.createCustomer);
 router.get('/customers', authenticateToken, CustomerController.getAllCustomers);
-router.get('/customers/:id', CustomerController.getCustomerById);
-router.put('/customers', CustomerController.updateCustomerById);
-router.delete('/customers/:id', CustomerController.deleteCustomerById);
+router.get('/customers/:id',authenticateToken, CustomerController.getCustomerById);
+router.put('/customers',authenticateToken, CustomerController.updateCustomerById);
+router.delete('/customers/:id',authenticateToken, CustomerController.deleteCustomerById);
 
 
 // Customers
 router.post('/booking', authenticateToken, BookingController.create);
-router.get('/booking', authenticateToken, BookingController.getAll);
-// router.get('/booking/:id', CustomerController.getCustomerById);
-// router.put('/booking', CustomerController.updateCustomerById);
-// router.delete('/booking/:id', CustomerController.deleteCustomerById);
+router.post('/getbooking', authenticateToken, BookingController.getAll);
+router.get('/booking/:id',authenticateToken, BookingController.getById);
+router.post('/bookingUpdate', authenticateToken,BookingController.updateById);
+router.delete('/booking/:id', BookingController.deleteById);
 
 
 
